@@ -10,16 +10,19 @@ class MatomobpmAPIConnector {
     private $query;
 
     private $url;
+    private $id_site;
 
     public function __construct(ClientFactory $client) {
         $matomobpm_config = \Drupal::state()->get(\Drupal\matomobpm\Form\MatomobpmApiConfigForm::MATOMOBPM_API_CONFIG_FORM);
         $api_url = ($matomobpm_config['matomobpm_api_base_url']) ?: '';
         $api_token = ($matomobpm_config['matomobpm_api_token']) ?: '';
+        $id_site = ($matomobpm_config['id_site']) ?: '';
         
         $query = ['matomobpm_api_token' => $api_token];
 
         $this->query = $query;
         $this->url = $api_url;
+        $this->id_site = $id_site;
         $this->client = $client->fromOptions([
             'base_uri' => $api_url
         ]);
@@ -32,7 +35,7 @@ class MatomobpmAPIConnector {
                 'query' => [
                     'module' => 'API',
                     'method' => 'Actions.getPageTitles',
-                    'idSite' => 2,
+                    'idSite' => $this->id_site,
                     'period' => $period,
                     'date' => $date,
                     'format' => 'json',
@@ -60,14 +63,14 @@ class MatomobpmAPIConnector {
         $key = $this->query['matomobpm_api_token'];
         $imageUrls = array(
 
-          'visits' =>  $url . "/?period=day&date=last7&forceView=1&viewDataTable=sparkline&module=API&action=get&disableLink=0&widget=1&idSite=2&columns=nb_visits%2Cnb_uniq_visitors&token_auth=" . $key,  // Remplacez par votre URL réelle
-          'length' => $url . "/?period=day&date=last7&forceView=1&viewDataTable=sparkline&module=API&action=get&disableLink=0&widget=1&idSite=2&columns=avg_time_on_site&token_auth=" . $key,
-          'bounce' => $url . "/?period=day&date=last7&forceView=1&viewDataTable=sparkline&module=API&action=get&disableLink=0&widget=1&idSite=2&columns=bounce_rate&token_auth=" . $key,
-          'actions' => $url . "/?period=day&date=last7&forceView=1&viewDataTable=sparkline&module=API&action=get&disableLink=0&widget=1&idSite=2&columns=nb_actions_per_visit&token_auth=" . $key,
-          'maxActions' => $url . "/?period=day&date=last7&forceView=1&viewDataTable=sparkline&module=API&action=get&disableLink=0&widget=1&idSite=2&columns=max_actions&token_auth=" . $key,
-          'pages' => $url . "/?period=day&date=last7&forceView=1&viewDataTable=sparkline&module=API&action=get&disableLink=0&widget=1&idSite=2&columns=nb_pageviews%2Cnb_uniq_pageviews&token_auth=" . $key,
-          'downloads' => $url . "/?period=day&date=last7&forceView=1&viewDataTable=sparkline&module=API&action=get&disableLink=0&widget=1&idSite=2&columns=nb_downloads%2Cnb_uniq_downloads&token_auth=" . $key,
-          'links' => $url . "/?period=day&date=last7&forceView=1&viewDataTable=sparkline&module=API&action=get&disableLink=0&widget=1&idSite=2&columns=nb_outlinks%2Cnb_uniq_outlinks&token_auth=" . $key,
+          'visits' =>  $url . "/?period=day&date=last7&forceView=1&viewDataTable=sparkline&module=API&action=get&disableLink=0&widget=1&idSite=". $this->id_site ."&columns=nb_visits%2Cnb_uniq_visitors&token_auth=" . $key,  // Remplacez par votre URL réelle
+          'length' => $url . "/?period=day&date=last7&forceView=1&viewDataTable=sparkline&module=API&action=get&disableLink=0&widget=1&idSite=". $this->id_site ."&columns=avg_time_on_site&token_auth=" . $key,
+          'bounce' => $url . "/?period=day&date=last7&forceView=1&viewDataTable=sparkline&module=API&action=get&disableLink=0&widget=1&idSite=". $this->id_site ."&columns=bounce_rate&token_auth=" . $key,
+          'actions' => $url . "/?period=day&date=last7&forceView=1&viewDataTable=sparkline&module=API&action=get&disableLink=0&widget=1&idSite=". $this->id_site ."&columns=nb_actions_per_visit&token_auth=" . $key,
+          'maxActions' => $url . "/?period=day&date=last7&forceView=1&viewDataTable=sparkline&module=API&action=get&disableLink=0&widget=1&idSite=". $this->id_site ."&columns=max_actions&token_auth=" . $key,
+          'pages' => $url . "/?period=day&date=last7&forceView=1&viewDataTable=sparkline&module=API&action=get&disableLink=0&widget=1&idSite=". $this->id_site ."&columns=nb_pageviews%2Cnb_uniq_pageviews&token_auth=" . $key,
+          'downloads' => $url . "/?period=day&date=last7&forceView=1&viewDataTable=sparkline&module=API&action=get&disableLink=0&widget=1&idSite=". $this->id_site ."&columns=nb_downloads%2Cnb_uniq_downloads&token_auth=" . $key,
+          'links' => $url . "/?period=day&date=last7&forceView=1&viewDataTable=sparkline&module=API&action=get&disableLink=0&widget=1&idSite=". $this->id_site ."&columns=nb_outlinks%2Cnb_uniq_outlinks&token_auth=" . $key,
           
         );
       
@@ -81,7 +84,7 @@ class MatomobpmAPIConnector {
                 'query' => [
                     'module' => 'API',
                     'method' => 'VisitsSummary.get',
-                    'idSite' => 2,
+                    'idSite' => $this->id_site,
                     'period' => $period,
                     'date' => $date,
                     'format' => 'json',
@@ -109,7 +112,7 @@ class MatomobpmAPIConnector {
                 'query' => [
                     'module' => 'API',
                     'method' => 'Actions.get',
-                    'idSite' => 2,
+                    'idSite' => $this->id_site,
                     'period' => $period,
                     'date' => $date,
                     'format' => 'json',
@@ -138,7 +141,7 @@ class MatomobpmAPIConnector {
                 'query' => [
                     'module' => 'API',
                     'method' => 'Referrers.getReferrerType',
-                    'idSite' => 2,
+                    'idSite' => $this->id_site,
                     'period' => $period,
                     'date' => $date,
                     'format' => 'json',
@@ -166,7 +169,7 @@ class MatomobpmAPIConnector {
                 'query' => [
                     'module' => 'API',
                     'method' => 'DevicesDetection.getType',
-                    'idSite' => 2,
+                    'idSite' => $this->id_site,
                     'period' => $period,
                     'date' => $date,
                     'format' => 'json',
@@ -194,7 +197,7 @@ class MatomobpmAPIConnector {
                 'query' => [
                     'module' => 'API',
                     'method' => 'UserCountry.getCity',
-                    'idSite' => 2,
+                    'idSite' => $this->id_site,
                     'period' => $period,
                     'date' => $date,
                     'format' => 'json',

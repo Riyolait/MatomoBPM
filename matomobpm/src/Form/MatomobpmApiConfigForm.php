@@ -27,8 +27,16 @@ class MatomobpmApiConfigForm extends FormBase   {
             '#type' => 'textfield',
             '#title' => $this->t('API Token'),
             '#description' => $this->t('The API token for the Matomo API.'),
-            '#required' => TRUE,
+            '#required' => FALSE,
             '#default_value' => $values['matomobpm_api_token']
+        );
+        
+        $form['id_site'] = array(
+            '#type' => 'textfield',
+            '#title' => $this->t('Site ID'),
+            '#description' => $this->t('The Site ID for the Matomo API.'),
+            '#required' => TRUE,
+            '#default_value' => $values['id_site']
         );
         
         $form['actions']['#type'] = 'actions';
