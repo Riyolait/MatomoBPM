@@ -1,0 +1,14 @@
+matomobpm_config:
+  route_name: matomobpm.api_config_page
+  parent: system.admin_config
+  title: Matomo BPM Module
+  description: 'Configure Matomo BPM API settings.'
+  weight: -11
+
+matomobpm.api_config_page:
+  title: 'Matomo BPM API Configuration'
+  description: 'Configure Matomo BPM API settings.'
+  parent: matomobpm_config
+  route_name: matomobpm.api_config_page
+  weight: -1
+

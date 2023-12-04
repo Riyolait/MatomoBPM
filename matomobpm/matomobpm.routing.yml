@@ -1,0 +1,15 @@
+matomobpm.api_config_page:
+  path: 'admin/config/matomobpm'
+  defaults:
+    _form: '\Drupal\matomobpm\Form\MatomobpmApiConfigForm'
+    _title: 'Matomo BPM API Configuration'
+  requirements:
+    _permission: 'administer site configuration'
+    
+matomobpm.dashboard:
+  path: '/matomobpm'
+  defaults:
+    _controller: '\Drupal\matomobpm\Controller\MatomobpmController::dashboard'
+    _title: 'Matomo BPM Dashboard'
+  requirements:
+    _permission: 'access content'

@@ -1,0 +1,4 @@
+services:
+  matomobpm.api_connector:
+    class: Drupal\matomobpm\MatomobpmAPIConnector
+    arguments: ['@http_client_factory']
