@@ -22,6 +22,7 @@ class MatomobpmController extends ControllerBase {
 
     $matomobpm_config = \Drupal::state()->get(\Drupal\matomobpm\Form\MatomobpmApiConfigForm::MATOMOBPM_API_CONFIG_FORM);
     $api_url = ($matomobpm_config['matomobpm_api_base_url']) ?: '';
+    $date = ($matomobpm_config['date']) ?: 'today';
     $sparklineImages = $this->sparklineImages();
     $sparklineInfos = $this->sparklineInfos();
     $sparklineInfos2 = $this->sparklineInfos2();
@@ -39,6 +40,7 @@ class MatomobpmController extends ControllerBase {
     $content['referrer_type'] = $referrerType;
     $content['devices_type'] = $devicesType;
     $content['api_url'] = $api_url;
+    $content['date'] = $date;
 
     return array(
       '#theme' => 'matomobpm_dashboard',
@@ -82,9 +84,9 @@ class MatomobpmController extends ControllerBase {
     
         return $sparkline_images;
     }
-    public function sparklineInfos($period = 'day', $date = 'today'){
+    public function sparklineInfos($function = '1'){
         $matomobpm_api_connector_service = \Drupal::service('matomobpm.api_connector');
-        $sparkline_infos = $matomobpm_api_connector_service->getSparklineInfos($period, $date);
+        $sparkline_infos = $matomobpm_api_connector_service->getSparklineInfos($function);
     
         return $sparkline_infos;
     }
@@ -111,7 +113,7 @@ class MatomobpmController extends ControllerBase {
     }
 
     public function dataChart(){
-        $dataforChart = $this->sparklineInfos('day', 'last7');
+        $dataforChart = $this->sparklineInfos('2');
 
         // Traiter les données
         $formattedData = [];

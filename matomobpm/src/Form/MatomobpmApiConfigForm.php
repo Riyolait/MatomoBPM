@@ -38,7 +38,40 @@ class MatomobpmApiConfigForm extends FormBase   {
             '#required' => TRUE,
             '#default_value' => $values['id_site']
         );
-        
+
+         // Add dropdown for 'period'
+        $form['period'] = array(
+            '#type' => 'select',
+            '#title' => $this->t('Period'),
+            '#description' => $this->t('The period for the Matomo API request.'),
+            '#required' => TRUE,
+            '#options' => [
+                'day' => $this->t('Day'),
+                'week' => $this->t('Week'),
+                'month' => $this->t('Month'),
+                'year' => $this->t('Year'),
+                // Add more options as needed...
+            ],
+            '#default_value' => $values['period'],
+        );
+
+        // Add dropdown for 'date'
+        $form['date'] = array(
+            '#type' => 'select',
+            '#title' => $this->t('Date'),
+            '#description' => $this->t('The date for the Matomo API request.'),
+            '#required' => TRUE,
+            '#options' => [
+                'yesterday' => $this->t('Yesterday'),
+                'today' => $this->t('Today'),
+                'last7' => $this->t('Last 7 days'),
+                'last30' => $this->t('Last 30 days'),
+                'last365' => $this->t('Last 365 days'),
+                // Add more options as needed...
+            ],
+            '#default_value' => $values['date'],
+        );
+
         $form['actions']['#type'] = 'actions';
         $form['actions']['submit'] = array(
             '#type' => 'submit',

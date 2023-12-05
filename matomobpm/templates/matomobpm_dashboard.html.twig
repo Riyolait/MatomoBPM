@@ -55,6 +55,23 @@
     <div class="recap">
         <h2>Récapitulatif des visites</h2>
         <div id="sessions">
+        {% set formatedDate = content.date %}
+            
+        <div class="sparkline"><h4>Au cours des 7 derniers jours / </h4><div>
+            <h4>
+                {% if formatedDate == 'today' %}
+                    {{ 'Aujourd\'hui' }}
+                {% elseif formatedDate == 'yesterday' %}
+                    {{ 'Hier' }}
+                {% elseif formatedDate == 'last7' %}
+                    {{ 'Semaine en cours' }}
+                {% elseif formatedDate == 'last30' %}
+                    {{ 'Mois en cours' }}
+                {% elseif formatedDate == 'last365' %}
+                    {{ 'Année en cours' }}
+                {% endif %}
+            </h4></div></div>
+            <br />
             <div class="sparkline"><div><img title="7 derniers jours" id="imgVisits" src="{{content.sparkline_images.visits}}" width="100" height="25" /></div><div><strong id="nb_visits">{{ content.sparkline_infos.nb_visits}}</strong> visites, <strong id="nb_uniq_visitors">{{ content.sparkline_infos.nb_uniq_visitors}}</strong> visiteurs uniques</div></div>
             <div class="sparkline"><div><img title="7 derniers jours" id="imgLength" src="{{ content.sparkline_images.length}}" width="100" height="25" /></div><div><strong id="minsec">{{ content.sparkline_infos.avg_time_on_site}}</strong> durée moyenne d'une visite</div></div>
             <div class="sparkline"><div><img title="7 derniers jours" id="imgBounce" src="{{ content.sparkline_images.bounce}}" width="100" height="25" /></div><div><strong id="bounce_rate">{{ content.sparkline_infos.bounce_rate}}</strong> visiteurs ayant survolé (quitté le site après une page)</div></div>
@@ -124,7 +141,7 @@
                             {% endif %}
                             </td>
                             {% if row.nb_visits > 0 %}
-                                {% set totalSeconds2 = row.sum_visit_length / row.nb_visits %}
+                                {% set totalSeconds = row.sum_visit_length / row.nb_visits %}
                                 {% set hours2 = totalSeconds / 3600|round(0, 'floor') %}
                                 {% set minutes2 = (totalSeconds % 3600) / 60|round(0, 'floor') %}
                                 {% set seconds2 = totalSeconds % 60|round(0, 'floor') %}
@@ -175,7 +192,7 @@
                             {% endif %}
                             </td>
                             {% if row.nb_visits > 0 %}
-                                {% set totalSeconds2 = row.sum_visit_length / row.nb_visits %}
+                                {% set totalSeconds = row.sum_visit_length / row.nb_visits %}
                                 {% set hours2 = totalSeconds / 3600|round(0, 'floor') %}
                                 {% set minutes2 = (totalSeconds % 3600) / 60|round(0, 'floor') %}
                                 {% set seconds2 = totalSeconds % 60|round(0, 'floor') %}
