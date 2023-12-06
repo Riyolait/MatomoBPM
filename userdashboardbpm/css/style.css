@@ -53,7 +53,7 @@
     border-radius: 0.25rem;
 }
 td.status {
-    max-width: 190px;
+    min-width: 190px;
 }
 .bpmdashboard-table tbody th, .bpmdashboard-table tbody td {
     border: none;
