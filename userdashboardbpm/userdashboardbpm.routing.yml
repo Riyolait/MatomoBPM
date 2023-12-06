@@ -1,0 +1,7 @@
+userdashboardbpm.dashboard:
+  path: '/userdashboardbpm'
+  defaults:
+    _controller: '\Drupal\userdashboardbpm\Controller\userdashboardbpmController::dashboard'
+    _title: 'User Dashboard BPM'
+  requirements:
+    _permission: 'access content'

@@ -1,0 +1,40 @@
+<div class="bpmdashboard-table-wrap">
+    <table class="bpmdashboard-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Nom d'utilisateur</th>
+            <th>Status</th>
+            <th>Rôles</th>
+            <th>Membre depuis</th>
+            <th>Dernière activité</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in content.users %}
+            <tr class="alert">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.username }}</td>
+            {% if user.status == 'Blocked' %}
+                <td class="status"><span class="blocked">{{ user.status }}</span></td>
+            {% elseif user.status == 'Active' %}
+                <td class="status"><span class="active">{{ user.status }}</span></td>
+            {% elseif user.status == 'Pending' %}
+                <td class="status"><span class="pending">{{ user.status }}</span></td>
+            {% elseif user.status == 'Blocked by administrator' %}
+                <td class="status"><span class="blocked-by-administrator">{{ user.status }}</span></td>
+            {% elseif user.status == 'Deleted' %}
+                <td class="status"><span class="deleted">"{{ user.status }}</span></td>
+            {% endif %}
+            <td>{{ user.roles }}</td>
+            <td>{{ user.member_for }}</td>
+            <td>{{ user.last_access }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

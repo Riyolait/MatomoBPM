@@ -1,0 +1,121 @@
+.bpmdashboard-table-wrap {
+    overflow-x: scroll;
+}
+.bpmdashboard-table {
+    min-width: 1000px !important;
+    width: 100%;
+    -webkit-box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
+    -moz-box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
+    box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
+    margin-bottom: 1rem;
+    color: #212529;
+    border-collapse: collapse;
+}
+
+.bpmdashboard-table thead tr {
+    background: #fff;
+    border-bottom: 4px solid #eceffa;
+}
+
+.bpmdashboard-table thead th {
+    border: none;
+    padding: 30px;
+    font-size: 13px;
+    font-weight: 500;
+    color: gray;
+}
+
+.bpmdashboard-table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.bpmdashboard-table th, .bpmdashboard-table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.bpmdashboard-table th {
+    text-align: inherit;
+}
+
+.bpmdashboard-table tbody tr {
+    margin-bottom: 10px;
+    border-bottom: 4px solid #f8f9fd;
+}
+
+.bpmdashboard-table .alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.bpmdashboard-table tbody th, .bpmdashboard-table tbody td {
+    border: none;
+    padding: 30px;
+    font-size: 14px;
+    background: #fff;
+    vertical-align: middle;
+}
+.bpmdashboard-table tbody td.status span {
+    position: relative;
+    border-radius: 30px;
+    padding: 4px 10px 4px 25px;
+}
+
+.bpmdashboard-table tbody td.status .active {
+    background: #cff6dd;
+    color: #1fa750;
+}
+.bpmdashboard-table tbody td.status .active:after {
+    background: #23bd5a;
+}
+/* Style pour le statut "Blocked" */
+.bpmdashboard-table tbody td.status .blocked {
+    background: #fddddd;
+    color: #ff0000;
+}
+.bpmdashboard-table tbody td.status .blocked:after {
+    background: #e54d4d;
+}
+
+/* Style pour le statut "Pending" */
+.bpmdashboard-table tbody td.status .pending {
+    background: #fef8d6;
+    color: #ffad00;
+}
+.bpmdashboard-table tbody td.status .pending:after {
+    background: #e0bb29;
+}
+
+/* Style pour le statut "Deleted" */
+.bpmdashboard-table tbody td.status .deleted {
+    background: #f8f8f8;
+    color: #7d7d7d;
+}
+.bpmdashboard-table tbody td.status .deleted:after {
+    background: #d3d3d3;
+}
+
+/* Style pour le statut "Blocked by admin" */
+.bpmdashboard-table tbody td.status .blocked-by-admin {
+    background: #e4ecf1;
+    color: #396c7f;
+}
+.bpmdashboard-table tbody td.status .blocked-by-admin:after {
+    background: #2b5874;
+}
+
+.bpmdashboard-table tbody td.status span:after {
+    position: absolute;
+    top: 9px;
+    left: 10px;
+    width: 10px;
+    height: 10px;
+    content: '';
+    border-radius: 50%;
+}   
+
