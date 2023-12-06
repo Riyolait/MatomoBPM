@@ -47,9 +47,7 @@
     </div>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        
 
-        
         (function ($) {
             $(document).ready(function () {
                 // Fonction de recherche
@@ -110,5 +108,17 @@
             });
         })(jQuery);
 
+    });
+    document.addEventListener("DOMContentLoaded", function() {
+        var table = document.querySelector('.bpmdashboard-table');
+        var tableScroll = document.querySelector('.table-scroll > .div-scroll');
+
+        if (table && tableScroll) {
+            // Obtenez la largeur du tableau
+            var tableWidth = table.offsetWidth;
+
+            // Appliquer la largeur du tableau au conteneur de défilement
+            tableScroll.style.width = tableWidth + 'px';
+        }
     });
 </script>
