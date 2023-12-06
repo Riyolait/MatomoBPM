@@ -70,6 +70,7 @@
 }
 .bpmdashboard-table tbody td {
     word-break: break-all;
+    white-space: initial;
 }
 .bpmdashboard-table .alert {
     position: relative;
