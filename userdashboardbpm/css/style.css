@@ -6,10 +6,11 @@
     /* wrapper1 */
     height: 20px;
     overflow-y: hidden;
+    display: none;
 }
 .table-scroll > .div-scroll{
     height: 20px;
-    min-width: 1000px !important;
+    /* min-width: 1000px !important; */
 }
 
 .bpmdashboard-table-wrap {
@@ -19,7 +20,7 @@
 }
 
 .bpmdashboard-table {
-    min-width: 1000px !important;
+    /* min-width: 1000px !important; */
     width: 100%;
     -webkit-box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
     -moz-box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
@@ -28,6 +29,7 @@
     color: #212529;
     border-collapse: collapse;
     overflow: auto;
+    table-layout: fixed;
 }
 .bpmdashboard-table thead {
     position: sticky;
@@ -56,6 +58,7 @@
     padding: 0.75rem;
     vertical-align: top;
     border-top: 1px solid #dee2e6;
+    text-align: center;
 }
 
 .bpmdashboard-table th {
@@ -65,7 +68,9 @@
     margin-bottom: 10px;
     border-bottom: 4px solid #f8f9fd;
 }
-
+.bpmdashboard-table tbody td {
+    word-break: break-all;
+}
 .bpmdashboard-table .alert {
     position: relative;
     padding: 0.75rem 1.25rem;
@@ -147,3 +152,50 @@ td.status {
     border-radius: 50%;
 }   
 
+@media screen and (max-width: 768px) {
+    .bpmdashboard-table {
+        min-width: 1000px !important;
+        border: 0;
+    }
+    .bpmdashboard-table tbody td {
+      font-size: 11px;
+      text-align: left;
+    }
+    .table-scroll {
+        /* wrapper1 */
+        display: block;
+    }
+
+}
+
+@media screen and (max-width: 992px) {
+    .bpmdashboard-table {
+        min-width: 1000px !important;
+        border: 0;
+    }
+    .bpmdashboard-table tbody td {
+      font-size: 11px;
+      text-align: left;
+    }
+    .table-scroll {
+        /* wrapper1 */
+        display: block;
+    }
+
+}
+
+@media screen and (max-width: 1200px) {
+    .bpmdashboard-table {
+        min-width: 1200px !important;
+        border: 0;
+    }
+    .bpmdashboard-table tbody td {
+      font-size: 14px;
+      text-align: left;
+    }
+    .table-scroll {
+        /* wrapper1 */
+        display: block;
+    }
+
+}
