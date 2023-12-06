@@ -26,7 +26,7 @@
             {% elseif user.status == 'Pending' %}
                 <td class="status"><span class="pending">{{ user.status }}</span></td>
             {% elseif user.status == 'Blocked by administrator' %}
-                <td class="status"><span class="blocked-by-administrator">{{ user.status }}</span></td>
+                <td class="status"><span class="blocked-by-admin">{{ user.status }}</span></td>
             {% elseif user.status == 'Deleted' %}
                 <td class="status"><span class="deleted">"{{ user.status }}</span></td>
             {% endif %}

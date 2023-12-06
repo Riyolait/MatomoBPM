@@ -69,6 +69,7 @@
 .bpmdashboard-table tbody td.status .active {
     background: #cff6dd;
     color: #1fa750;
+    min-width: fit-content;
 }
 .bpmdashboard-table tbody td.status .active:after {
     background: #23bd5a;
@@ -77,6 +78,7 @@
 .bpmdashboard-table tbody td.status .blocked {
     background: #fddddd;
     color: #ff0000;
+    min-width: fit-content;
 }
 .bpmdashboard-table tbody td.status .blocked:after {
     background: #e54d4d;
@@ -86,6 +88,7 @@
 .bpmdashboard-table tbody td.status .pending {
     background: #fef8d6;
     color: #ffad00;
+    min-width: fit-content;
 }
 .bpmdashboard-table tbody td.status .pending:after {
     background: #e0bb29;
@@ -95,6 +98,7 @@
 .bpmdashboard-table tbody td.status .deleted {
     background: #f8f8f8;
     color: #7d7d7d;
+    min-width: fit-content;
 }
 .bpmdashboard-table tbody td.status .deleted:after {
     background: #d3d3d3;
@@ -104,6 +108,7 @@
 .bpmdashboard-table tbody td.status .blocked-by-admin {
     background: #e4ecf1;
     color: #396c7f;
+    min-width: fit-content;
 }
 .bpmdashboard-table tbody td.status .blocked-by-admin:after {
     background: #2b5874;
