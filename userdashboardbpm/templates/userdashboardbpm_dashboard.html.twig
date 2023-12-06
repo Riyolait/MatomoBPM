@@ -1,40 +1,114 @@
-<div class="bpmdashboard-table-wrap">
-    <table class="bpmdashboard-table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nom</th>
-            <th>Email</th>
-            <th>Nom d'utilisateur</th>
-            <th>Status</th>
-            <th>Rôles</th>
-            <th>Membre depuis</th>
-            <th>Dernière activité</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for user in content.users %}
-            <tr class="alert">
-            <td>{{ user.id }}</td>
-            <td>{{ user.name }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.username }}</td>
-            {% if user.status == 'Blocked' %}
-                <td class="status"><span class="blocked">{{ user.status }}</span></td>
-            {% elseif user.status == 'Active' %}
-                <td class="status"><span class="active">{{ user.status }}</span></td>
-            {% elseif user.status == 'Pending' %}
-                <td class="status"><span class="pending">{{ user.status }}</span></td>
-            {% elseif user.status == 'Blocked by administrator' %}
-                <td class="status"><span class="blocked-by-admin">{{ user.status }}</span></td>
-            {% elseif user.status == 'Deleted' %}
-                <td class="status"><span class="deleted">"{{ user.status }}</span></td>
-            {% endif %}
-            <td>{{ user.roles }}</td>
-            <td>{{ user.member_for }}</td>
-            <td>{{ user.last_access }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<div class="table-search">
+    <label for="table-search">Rechercher :</label>
+    <input type="text" id="table-search" placeholder="Entrez votre recherche">
+  </div>
+<div class="table-scroll">
+<div class="div-scroll"></div>
 </div>
+<div class="bpmdashboard-table-wrap">
+        <table class="bpmdashboard-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Nom d'utilisateur</th>
+                        <th>Status</th>
+                        <th>Rôles</th>
+                        <th>Membre depuis</th>
+                        <th>Dernière activité</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in content.users %}
+                        <tr class="alert">
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.username }}</td>
+                        {% if user.status == 'Blocked' %}
+                            <td class="status"><span class="blocked">{{ user.status }}</span></td>
+                        {% elseif user.status == 'Active' %}
+                            <td class="status"><span class="active">{{ user.status }}</span></td>
+                        {% elseif user.status == 'Pending' %}
+                            <td class="status"><span class="pending">{{ user.status }}</span></td>
+                        {% elseif user.status == 'Blocked by administrator' %}
+                            <td class="status"><span class="blocked-by-admin">{{ user.status }}</span></td>
+                        {% elseif user.status == 'Deleted' %}
+                            <td class="status"><span class="deleted">"{{ user.status }}</span></td>
+                        {% endif %}
+                        <td>{{ user.roles }}</td>
+                        <td>{{ user.member_for }}</td>
+                        <td>{{ user.last_access }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+        </table>
+    </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        
+
+        
+        (function ($) {
+            $(document).ready(function () {
+                // Fonction de recherche
+                $('#table-search').on('input', function () {
+                    var searchValue = $(this).val().toLowerCase();
+    
+                    // Parcourir chaque ligne du tableau
+                    $('.bpmdashboard-table tbody tr').each(function () {
+                        var rowText = $(this).text().toLowerCase();
+    
+                        // Afficher ou masquer la ligne en fonction de la correspondance
+                        $(this).toggle(rowText.indexOf(searchValue) > -1);
+                    });
+                });
+    
+                // Fonction de tri
+                $('.bpmdashboard-table thead th').on('click', function () {
+                    var index = $(this).index();
+                    var sortOrder = $(this).data('sort-order') || 'asc';
+    
+                    // Récupérer toutes les lignes
+                    var rows = $('.bpmdashboard-table tbody tr').get();
+    
+                    // Trier les lignes en fonction de la colonne cliquée
+                    rows.sort(function (a, b) {
+                        var aValue = $(a).find('td').eq(index).text();
+                        var bValue = $(b).find('td').eq(index).text();
+    
+                        if (sortOrder === 'asc') {
+                            return aValue.localeCompare(bValue);
+                        } else {
+                            return bValue.localeCompare(aValue);
+                        }
+                    });
+    
+                    // Inverser l'ordre de tri pour le prochain clic
+                    $(this).data('sort-order', sortOrder === 'asc' ? 'desc' : 'asc');
+    
+                    // Appliquer les nouvelles positions des lignes
+                    $('.bpmdashboard-table tbody').empty().append(rows);
+    
+                    // Réinitialiser le style des autres entêtes
+                    $('.bpmdashboard-table thead th').css('background-color', '');
+    
+                    // Mettre en surbrillance l'entête sélectionné
+                    $(this).css('background-color', '#ddd');
+                });
+            
+                $(".table-scroll").scroll(function(){
+                    $(".bpmdashboard-table-wrap")
+                        .scrollLeft($(".table-scroll").scrollLeft());
+                });
+        
+                $(".bpmdashboard-table-wrap").scroll(function(){
+                    $(".table-scroll")
+                        .scrollLeft($(".bpmdashboard-table-wrap").scrollLeft());
+                });
+            });
+        })(jQuery);
+
+    });
+</script>

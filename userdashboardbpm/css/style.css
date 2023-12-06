@@ -1,6 +1,24 @@
-.bpmdashboard-table-wrap {
-    overflow-x: scroll;
+.table-scroll, .bpmdashboard-table-wrap{
+    border: none 0px RED;
+    overflow-x: scroll; 
 }
+.table-scroll {
+    /* wrapper1 */
+    height: 20px;
+    overflow-y: hidden;
+}
+.table-scroll > .div-scroll{
+    height: 20px;
+    min-width: 1000px !important;
+    width: 100%;
+}
+
+.bpmdashboard-table-wrap {
+    /* wrapper2 */
+    overflow-x: scroll;
+    max-height: 600px;
+}
+
 .bpmdashboard-table {
     min-width: 1000px !important;
     width: 100%;
@@ -10,6 +28,7 @@
     margin-bottom: 1rem;
     color: #212529;
     border-collapse: collapse;
+    overflow: auto;
 }
 
 .bpmdashboard-table thead tr {

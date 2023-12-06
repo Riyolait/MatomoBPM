@@ -2,6 +2,6 @@ userdashboardbpm.dashboard:
   path: '/userdashboardbpm'
   defaults:
     _controller: '\Drupal\userdashboardbpm\Controller\userdashboardbpmController::dashboard'
-    _title: 'User Dashboard BPM'
+    _title: 'Tableau de Bord des Utilisateurs'
   requirements:
     _permission: 'access content'
